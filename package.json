@@ -1,0 +1,24 @@
+{
+  "name": "todolist_v-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sachin",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.1.4",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "mongod": "^2.0.0",
+    "mongodb": "^5.6.0",
+    "mongoose": "^7.2.4",
+    "node": "^20.2.0",
+    "nodemon": "^2.0.22"
+  }
+}

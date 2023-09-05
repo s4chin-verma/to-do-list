@@ -1,0 +1,101 @@
+<%- include("header") -%>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-dark navbg">
+      <a class="navbar-brand" href="#link">To-Do List</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <span class="navbar-text">
+              <%= date %>
+            </span>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <span class="navbar-text" id="current-time"></span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+
+
+  <section class="vh-100">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-lg-9 col-xl-7">
+          <div class="card rounded-3">
+            <div class="card-body p-4">
+              <h4 class="text-center my-3 pb-3">
+                <%= listtitle %>
+              </h4>
+
+              <form class="row row-cols-lg-auto g-3 justify-content-center align-items-center mb-4 pb-2" action="/"
+                method="post">
+                <div class="col-12">
+                  <div class="form-outline">
+                    <input id="link" type="text" name="firstinput" placeholder="Enter task here" autocomplete="off"
+                      class="form-control">
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit" name="list" value=<%=listtitle%> >Save</button>
+                </div>
+
+              </form>
+
+
+              <table class="table mb-4">
+                <thead>
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <form action="/delete" method="post">
+                    <% if (Array.isArray(tasklist)) { %>
+                      <% tasklist.forEach(function(item, index){ %>
+                        <tr>
+                          <td>
+                            <%= index + 1 %>
+                          </td>
+                          <td>
+                            <%= item.name %>
+                          </td>
+                          <td>In progress</td>
+                          <td>
+                            <button type="submit" class="btn btn-danger" name="deletedTask"
+                              value="<%= item._id %>">Delete</button>
+                            <!-- <button type="submit" class="btn btn-success ms-1" name="completedTask" value="<%= item._id %>">Finished</button> -->
+                          </td>
+                        </tr>
+                        <% })%>
+                          <% } else { %>
+                            <tr>
+                              <td colspan="4">No tasks found.</td>
+                            </tr>
+                            <% } %>
+                              <input type="hidden" name="listName" value="<%=listtitle%>">
+                  </form>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="/script.js"></script>
+
+  <%- include('footer')-%>
